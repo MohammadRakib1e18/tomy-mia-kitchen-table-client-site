@@ -2,6 +2,7 @@ import React from "react";
 import { FaBahai } from "react-icons/fa";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import jwt_img from "../../images/jwt-workflow.webp";
+import jwt_img2 from '../../images/workflow_jwt.png'
 import "./Blogs.css";
 import "react-photo-view/dist/react-photo-view.css";
 
@@ -73,15 +74,24 @@ const Blogs = () => {
                 be used for an authentication system and can also be used for
                 information exchange.The token is mainly composed of header,
                 payload, signature.
-                <PhotoProvider>
-                  <PhotoView src={jwt_img}>
-                    <img
-                      className="cursor-pointer w-72 mx-auto my-3 rounded-lg border-2 p-0.5 border-slate-500 hover:border-slate-400"
-                      src={jwt_img}
-                      alt=""
-                    />
-                  </PhotoView>
-                </PhotoProvider>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <PhotoProvider>
+                    <PhotoView src={jwt_img}>
+                      <img
+                        className="cursor-pointer w-1/2  mx-auto my-3 rounded-lg border-2 p-0.5 border-slate-500 hover:border-slate-400"
+                        src={jwt_img}
+                        alt=""
+                      />
+                    </PhotoView>
+                    <PhotoView src={jwt_img2}>
+                      <img
+                        className="cursor-pointer  w-1/2 mx-auto my-3 rounded-lg border-2 p-0.5 border-slate-500 hover:border-slate-400"
+                        src={jwt_img2}
+                        alt=""
+                      />
+                    </PhotoView>
+                  </PhotoProvider>
+                </div>
                 These three parts are separated by dots(.). JWT defines the
                 structure of information we are sending from one party to the
                 another, and it comes in two forms - Serialized, Deserialized.
