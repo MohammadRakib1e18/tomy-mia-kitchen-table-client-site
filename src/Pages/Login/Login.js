@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { FiEyeOff, FiEye } from "react-icons/fi";
 
 const Login = () => {
+  const [show, setShow] = useState(false);
   return (
     <div className="mt-8 w-5/6 mx-auto max-w-md p-8 space-y-3 rounded-xl   bg-slate-700   text-gray-100">
       <h1 className="text-2xl font-bold text-center">Sign in</h1>
       <form
-        novalidate=""
-        action=""
         className="space-y-6 ng-untouched ng-pristine ng-valid"
       >
         <div className="space-y-1 text-sm">
@@ -23,17 +23,29 @@ const Login = () => {
             className="w-full px-4 py-3    border-gray-700   bg-gray-900   text-gray-100 focus:border-violet-400"
           />
         </div>
-        <div className="space-y-1 text-sm">
+        <div className="space-y-1 text-sm relative">
           <label for="password" className="block   text-gray-400">
             Password
           </label>
           <input
-            type="password"
+            type={`${show ? "text" : "password"}`}
             name="password"
             id="password"
             placeholder="**********"
             className="w-full px-4 py-3    border-gray-700   bg-gray-900   text-gray-100 focus:border-violet-400"
           />
+          <span
+            className="absolute right-4 top-1/2"
+            onClick={() => {
+              setShow(!show);
+            }}
+          >
+            {show ? (
+              <FiEye className="faFac2" />
+            ) : (
+              <FiEyeOff className="faFac1" />
+            )}
+          </span>
         </div>
         <button className="block w-full font-semibold p-3 text-center  text-gray-900   bg-blue-300">
           Sign in
