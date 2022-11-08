@@ -18,7 +18,10 @@ const Navbar = () => {
           >
             {open ? <FaCut /> : <FaBars />}
           </div>
-          <Link className="flex items-center justify-center md:justify-start text-xl w-5/6 lg:w-full  mx-auto" to="/">
+          <Link
+            className="flex items-center justify-center md:justify-start text-xl w-5/6 lg:w-full  mx-auto"
+            to="/"
+          >
             <img
               className="w-1/12 md:w-1/12 mr-2 rounded-full"
               src={navLogo}
@@ -37,7 +40,7 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link>Services</Link>
+              <Link to="/services">Services</Link>
             </li>
             <li>
               <Link to="/blogs">Blogs</Link>
@@ -61,7 +64,7 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link>Services</Link>
+            <Link to='/services'>Services</Link>
           </li>
           <li>
             <Link to="/blogs">Blogs</Link>
