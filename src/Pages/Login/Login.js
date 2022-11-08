@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import toast from "react-hot-toast";
@@ -9,7 +9,9 @@ import Swal from "sweetalert2";
 const Login = () => {
   const [show, setShow] = useState(false);
   const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
-  const navigate = useNavigate();
+   const navigate = useNavigate();
+   const location = useLocation();
+   const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -25,7 +27,7 @@ const Login = () => {
           showConfirmButton: true,
           timer: 1500,
         });
-        navigate('/');
+        navigate(from, { replace: true });
       })
       .catch((error) => {
        toast.error(`${error.message}`);
@@ -35,8 +37,9 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
+        console.log(result.user);
         toast.success("SignIn with Google Successful!");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error(`${error.message}`);
@@ -46,7 +49,7 @@ const Login = () => {
     githubSignIn()
       .then((result) => {
         toast.success("SignIn with Github Successful!");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error(`${error.message}`);
@@ -60,7 +63,7 @@ const Login = () => {
         className="space-y-6 ng-untouched ng-pristine ng-valid"
       >
         <div className="space-y-1 text-sm">
-          <label for="email" className="block   text-gray-400">
+          <label htmlFor="email" className="block   text-gray-400">
             Email address
           </label>
           <input
@@ -72,7 +75,7 @@ const Login = () => {
           />
         </div>
         <div className="space-y-1 text-sm relative">
-          <label for="password" className="block   text-gray-400">
+          <label htmlFor="password" className="block   text-gray-400">
             Password
           </label>
           <input

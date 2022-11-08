@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import navLogo from "../../../images/logo.jpg";
 import { FaBars, FaCut } from "react-icons/fa";
+import { AuthContext } from "../../../contexts/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then((result) => {
+        toast.success("You've been successfully logged out❗");
+      })
+      .catch((error) => {
+        toast.error(`${error.message}`);
+      });
+  };
 
   return (
     <div className="navbar  bg-slate-800">
@@ -48,14 +61,30 @@ const Navbar = () => {
             <li>
               <Link>About</Link>
             </li>
+            {user?.uid ? (
+              <>
+                <button
+                  onClick={handleLogOut}
+                  className="btn btn-link  text-md rounded-none font-semibold"
+                >
+                  Sign out
+                </button>
+                <span title={user.displayName}>
+                  <img
+                    src={user.photoURL}
+                    className="w-16 rounded-full gap-2"
+                    alt=""
+                  />
+                </span>
+              </>
+            ) : (
+              <Link to="/login">
+                <button className="btn btn-outline  text-lg rounded-none font-semibold">
+                  Sign in
+                </button>
+              </Link>
+            )}
           </ul>
-        </div>
-        <div className={open ? " md:hidden" : " hidden"}>
-          <Link to="/login">
-            <button className="btn btn-outline  text-lg rounded-none font-semibold">
-              Sign in
-            </button>
-          </Link>
         </div>
       </div>
       <div className="navbar-center hidden md:flex">
@@ -64,7 +93,7 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to='/services'>Services</Link>
+            <Link to="/services">Services</Link>
           </li>
           <li>
             <Link to="/blogs">Blogs</Link>
@@ -74,13 +103,33 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end text-xl md:flex hidden">
-        <Link to="/login">
-          <button className="btn btn-outline  text-lg rounded-none font-semibold">
-            Sign in
-          </button>
-        </Link>
-      </div>
+      {user?.uid ? (
+        <div className="navbar-end md:flex hidden">
+          <div className="text-xl">
+            <button
+              onClick={handleLogOut}
+              className="btn btn-link  text-md rounded-none font-semibold"
+            >
+              Sign out
+            </button>
+          </div>
+          <span title={user.displayName}>
+            <img
+              src={user.photoURL}
+              className="w-16 rounded-full gap-2"
+              alt=""
+            />
+          </span>
+        </div>
+      ) : (
+        <div className="navbar-end text-xl md:flex hidden">
+          <Link to="/login">
+            <button className="btn btn-outline  text-lg rounded-none font-semibold">
+              Sign in
+            </button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
