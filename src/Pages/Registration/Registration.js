@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Registration = () => {
     return (
-      <div className="mt-5 w-5/6 mx-auto max-w-md p-8 space-y-3   bg-slate-700   text-gray-100">
+      <div className="mt-8 w-5/6 mx-auto max-w-md p-8 space-y-3   bg-slate-700   text-gray-100">
         <h1 className="text-2xl font-bold text-center">Sign up</h1>
         <form
           novalidate=""

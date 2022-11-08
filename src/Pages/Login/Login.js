@@ -4,7 +4,7 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   return (
-    <div className="mt-5 w-5/6 mx-auto max-w-md p-8 space-y-3 rounded-xl   bg-slate-700   text-gray-100">
+    <div className="mt-8 w-5/6 mx-auto max-w-md p-8 space-y-3 rounded-xl   bg-slate-700   text-gray-100">
       <h1 className="text-2xl font-bold text-center">Sign in</h1>
       <form
         novalidate=""
