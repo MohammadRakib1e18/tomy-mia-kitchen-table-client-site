@@ -5,7 +5,7 @@ import offer2 from "../../../images/o2.jpg";
 const Offers = () => {
   return (
     <>
-      <h2 className="text-2xl sm:text-3xl md:text-5xl text-center merri-text text-slate-200 mb-5 mt-12">
+      <h2 className="text-2xl sm:text-3xl md:text-5xl text-center merri-text text-slate-200 mb-5 mt-32">
         🌮 My Special Offers 🍲
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-10/12 mx-auto text-slate-100">
