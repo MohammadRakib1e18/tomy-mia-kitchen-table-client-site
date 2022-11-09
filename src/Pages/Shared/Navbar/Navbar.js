@@ -72,7 +72,7 @@ const Navbar = () => {
                 <span title={user.displayName}>
                   <img
                     src={user.photoURL}
-                    className="w-16 rounded-full gap-2"
+                    className="w-12 rounded-full gap-2"
                     alt=""
                   />
                 </span>
@@ -113,10 +113,10 @@ const Navbar = () => {
               Sign out
             </button>
           </div>
-          <span title={user.displayName}>
+          <span className="tooltip tooltip-left" data-tip={`${user.displayName}`}>
             <img
               src={user.photoURL}
-              className="w-16 rounded-full gap-2"
+              className="w-12 rounded-full gap-2"
               alt=""
             />
           </span>
@@ -124,7 +124,7 @@ const Navbar = () => {
       ) : (
         <div className="navbar-end text-xl md:flex hidden">
           <Link to="/login">
-            <button className="btn btn-outline  text-lg rounded-none font-semibold">
+            <button className="btn btn-outline btn-warning text-lg rounded-none font-semibold">
               Sign in
             </button>
           </Link>
