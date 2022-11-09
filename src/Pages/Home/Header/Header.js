@@ -1,5 +1,6 @@
 import { Carousel } from "flowbite-react";
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
@@ -15,9 +16,11 @@ const Header = () => {
             your stomach. Because, Empty Stomach never let you win against the
             giant.
           </p>
-          <button className="btn btn-outline btn-warning rounded-none">
-            Let's Get Started
-          </button>
+          <Link to="/services">
+            <button className="mt-5 btn btn-outline btn-warning rounded-none">
+              Let's Get Started
+            </button>
+          </Link>
         </div>
         <div className="ml-20 space-y-5">
           <h1 className="text-xl md:text-4xl md:w-5/6 w-2/3 font-bold">
@@ -28,9 +31,11 @@ const Header = () => {
             your stomach. Because, Empty Stomach never let you win against the
             giant.
           </p>
-          <button className="btn btn-outline btn-warning rounded-none">
-            Let's Get Started
-          </button>
+          <Link to="/services">
+            <button className="mt-5 btn btn-outline btn-warning rounded-none">
+              Let's Get Started
+            </button>
+          </Link>
         </div>
         <div className="ml-20 space-y-5">
           <h1 className="text-xl md:text-4xl md:w-5/6 w-2/3 font-bold">
@@ -41,9 +46,11 @@ const Header = () => {
             your stomach. Because, Empty Stomach never let you win against the
             giant.
           </p>
-          <button className="btn btn-outline btn-warning rounded-none">
-            Let's Get Started
-          </button>
+          <Link to="/services">
+            <button className="mt-5 btn btn-outline btn-warning rounded-none">
+              Let's Get Started
+            </button>
+          </Link>
         </div>
       </Carousel>
     </div>
