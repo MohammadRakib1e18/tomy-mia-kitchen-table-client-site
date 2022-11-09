@@ -8,7 +8,7 @@ const Offers = () => {
       <h2 className="text-2xl sm:text-3xl md:text-5xl text-center merri-text text-slate-200 mb-5 mt-32">
         🌮 My Special Offers 🍲
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-10/12 mx-auto text-slate-100">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-11/12 mx-auto text-slate-100">
         <div className="flex-col sm:flex-row card card-side bg-slate-700 shadow-xl rounded-none">
           <figure className="md:w-1/3 md:ml-3 w-2/3 mx-auto">
             <img

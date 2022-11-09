@@ -9,7 +9,7 @@ const WorkProcess = () => {
         <span>Your Expectation, My Commitment</span>
         <span className="spin-animation">🎯</span>
       </h2>
-      <div className="bg-slate-700 text-slate-100 grid md:grid-cols-3 grid-cols-1  mt-8 py-16">
+      <div className="w-11/12 w- mx-auto bg-slate-700 text-slate-100 grid md:grid-cols-3 grid-cols-1  mt-8 py-16">
         <div className="flex gap-2 items-center bg-slate-700 justify-center">
           <h2 className="text-5xl text-yellow-300 rounded-full border-dotted border-2 border-yellow-400 p-3 ">
             <FaShippingFast />

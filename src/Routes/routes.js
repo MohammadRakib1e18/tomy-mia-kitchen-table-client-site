@@ -5,7 +5,8 @@ import Blogs from "../Pages/Blogs/Blogs";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
-import AllServices from '../Pages/AllServices/AllServices';
+import AllServices from "../Pages/AllServices/AllServices";
+import HomeServices from "../Pages/Home/HomeServices/HomeServices";
 
 export const routes = createBrowserRouter([
   {

@@ -10,7 +10,7 @@ const Footer = () => {
     event.target.reset();
   };
   return (
-    <footer className="footer gap-y-5 mt-12 footer-center p-8 pb-5 bg-slate-800 text-slate-300 rounded">
+    <footer className="footer gap-y-5 mt-24 footer-center p-8 pb-5 bg-slate-800 text-slate-300 rounded">
       <h2 className="text-5xl">🥧</h2>
       <div>
         <div className="form-control w-80">
