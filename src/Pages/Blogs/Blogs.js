@@ -18,7 +18,7 @@ const Blogs = () => {
           <FaBahai />
         </span>
       </h2>
-      <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 mt-8">
+      <div className="blog-container grid lg:grid-cols-2 grid-cols-1 gap-5 mt-8">
         <div className="card w-full bg-slate-700 shadow-xl rounded-none">
           <div className="card-body">
             <h2 className="card-title">

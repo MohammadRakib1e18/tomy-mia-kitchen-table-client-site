@@ -1,9 +1,9 @@
-.card{
+.blog-container .card{
     border-top: 5px solid rgb(114, 63, 63);
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
 }
-.card:hover{
+.blog-container .card:hover{
     border-top: 5px solid rgb(196, 51, 51);
 }
 .spin-animation{

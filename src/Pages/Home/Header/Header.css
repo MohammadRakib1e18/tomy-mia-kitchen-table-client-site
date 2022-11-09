@@ -7,6 +7,6 @@
     background-size: cover;
     min-height: 550px;
 }
-.banner-container h1{
+.banner-container h1, .merri-text{
     font-family: 'Merriweather', serif;
 }
