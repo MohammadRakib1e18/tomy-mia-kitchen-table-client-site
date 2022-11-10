@@ -8,15 +8,13 @@ const UpdateReview = () => {
   const [msg, setMsg] = useState(message);
   const navigate = useNavigate();
 
-  
-
   const updateReview = () => {
     if (message.trim() === "") {
       toast.error("Don't remain message empty!");
       return;
     }
     review.message = msg;
-    fetch(`http://localhost:5000/allReviews/${_id}`, {
+    fetch(`https://resturant-site-server.vercel.app/allReviews/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -25,7 +23,7 @@ const UpdateReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        toast.success('review updated successfully!');
+        toast.success("review updated successfully!");
         navigate("/myReviews");
       });
   };

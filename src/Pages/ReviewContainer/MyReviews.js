@@ -8,19 +8,21 @@ import useTitle from "../../hooks/useTitle";
 import Review from "./Review";
 
 const MyReviews = () => {
-    useTitle('Home - My Reviews');
+  useTitle("Home - My Reviews");
   const [reviews, setReviews] = useState([]);
   const { user, loading } = useContext(AuthContext);
-    // if (loading) {
-    //   return <div className="text-center mt-12">
-    //     <Spinner aria-label="Extra large  Center-aligned spinner example" />
-    //   </div>;
-    // }
+  // if (loading) {
+  //   return <div className="text-center mt-12">
+  //     <Spinner aria-label="Extra large  Center-aligned spinner example" />
+  //   </div>;
+  // }
   // console.log(user.email);
 
   useEffect(() => {
     if (!loading) {
-      fetch(`http://localhost:5000/allReviews?email=${user?.email}`)
+      fetch(
+        `https://resturant-site-server.vercel.app/allReviews?email=${user?.email}`
+      )
         .then((res) => res.json())
         .then((data) => setReviews(data));
     }
@@ -33,9 +35,12 @@ const MyReviews = () => {
       confirmButtonText: "Save",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/services/delete/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://resturant-site-server.vercel.app/services/delete/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
@@ -66,7 +71,11 @@ const MyReviews = () => {
           </h2>
           <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:w-11/12 mx-auto gap-8 mt-8">
             {reviews.map((review) => (
-              <Review key={review._id} deleteReview={deleteReview} review={review}></Review>
+              <Review
+                key={review._id}
+                deleteReview={deleteReview}
+                review={review}
+              ></Review>
             ))}
           </div>
         </div>

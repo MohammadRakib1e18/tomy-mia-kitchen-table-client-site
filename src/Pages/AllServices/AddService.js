@@ -24,7 +24,7 @@ const AddService = () => {
     service["price"] = form.price.value;
     service["total_view"] = form.view.value;
 
-    fetch("http://localhost:5000/addService", {
+    fetch("https://resturant-site-server.vercel.app/addService", {
       method: "POST",
       headers: {
         "content-type": "application/json",

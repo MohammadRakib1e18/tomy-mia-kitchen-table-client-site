@@ -25,13 +25,16 @@ export const routes = createBrowserRouter([
       {
         path: "/services",
         element: <AllServices></AllServices>,
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () =>
+          fetch("https://resturant-site-server.vercel.app/services"),
       },
       {
         path: "/services/:id",
         element: <ServiceDetails></ServiceDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://resturant-site-server.vercel.app/services/${params.id}`
+          ),
       },
       {
         path: "/addReview/:id",
@@ -41,7 +44,9 @@ export const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://resturant-site-server.vercel.app/services/${params.id}`
+          ),
       },
       {
         path: "/addService",
@@ -63,7 +68,9 @@ export const routes = createBrowserRouter([
         path: "/updateReview/:id",
         element: <UpdateReview></UpdateReview>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allReviews/${params.id}`),
+          fetch(
+            `https://resturant-site-server.vercel.app/allReviews/${params.id}`
+          ),
       },
       {
         path: "/blogs",

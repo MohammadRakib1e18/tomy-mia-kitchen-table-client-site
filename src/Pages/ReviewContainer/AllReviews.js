@@ -8,9 +8,9 @@ import Review from "./Review";
 
 const AllReviews = () => {
   const [reviews, setReviews] = useState([]);
-    const {loading} = useContext(AuthContext);
+  const { loading } = useContext(AuthContext);
   useEffect(() => {
-    fetch("http://localhost:5000/allReviews")
+    fetch("https://resturant-site-server.vercel.app/allReviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
@@ -29,9 +29,12 @@ const AllReviews = () => {
       confirmButtonText: "Save",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/services/delete/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://resturant-site-server.vercel.app/services/delete/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
