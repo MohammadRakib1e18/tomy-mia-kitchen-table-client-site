@@ -6,14 +6,23 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider";
 import Swal from "sweetalert2";
 import useTitle from "../../hooks/useTitle";
+import { Spinner } from "flowbite-react";
 
 const Login = () => {
   useTitle('Login');
   const [show, setShow] = useState(false);
-  const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const { loading, signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
+  
    const navigate = useNavigate();
    const location = useLocation();
    const from = location.state?.from?.pathname || "/";
+   if (loading) {
+     return (
+       <div className="text-center mt-12">
+         <Spinner aria-label="Extra large  Center-aligned spinner example" />
+       </div>
+     );
+   }
 
   const handleLogin = (event) => {
     event.preventDefault();

@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
-import toast from "react-hot-toast";
-import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
-import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Review = ({ review, deleteReview }) => {
@@ -11,7 +9,6 @@ const Review = ({ review, deleteReview }) => {
   }
   const {
     _id,
-    id,
     title,
     message,
     username,
@@ -22,6 +19,9 @@ const Review = ({ review, deleteReview }) => {
     email,
   } = review;
 
+  const updateReview = () =>{
+    console.log('updated info');
+  }
   
   return (
     <div>
@@ -77,9 +77,9 @@ const Review = ({ review, deleteReview }) => {
                   >
                     Delete
                   </button>
-                  <button className="bg-cyan-600 text-slate-200 px-5 py-1 rounded-sm font-semibold">
+                  <Link to={`/updateReview/${_id}`}><button className="bg-cyan-600 text-slate-200 px-5 py-1 rounded-sm font-semibold">
                     Edit
-                  </button>
+                  </button></Link>
                 </span>
               )}
             </div>

@@ -11,16 +11,15 @@ const MyReviews = () => {
     useTitle('Home - My Reviews');
   const [reviews, setReviews] = useState([]);
   const { user, loading } = useContext(AuthContext);
-  //   if (loading) {
-  //     return <div className="text-center mt-12">
-  //       <Spinner aria-label="Extra large  Center-aligned spinner example" />
-  //     </div>;
-  //   }
+    // if (loading) {
+    //   return <div className="text-center mt-12">
+    //     <Spinner aria-label="Extra large  Center-aligned spinner example" />
+    //   </div>;
+    // }
   // console.log(user.email);
 
   useEffect(() => {
     if (!loading) {
-      console.log(user);
       fetch(`http://localhost:5000/allReviews?email=${user?.email}`)
         .then((res) => res.json())
         .then((data) => setReviews(data));
@@ -28,7 +27,6 @@ const MyReviews = () => {
   }, [user?.email]);
 
   const deleteReview = (_id) => {
-    console.log("delete button", _id);
     Swal.fire({
       title: "Do you really want to delete the review?",
       showCancelButton: true,

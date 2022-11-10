@@ -7,14 +7,23 @@ import Swal from "sweetalert2";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
 import useTitle from "../../hooks/useTitle";
+import { Spinner } from "flowbite-react";
 
 const Registration = () => {
   useTitle('Registration');
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
-  const { auth, createUser, googleSignIn, githubSignIn } =
+  const {loading, auth, createUser, googleSignIn, githubSignIn } =
     useContext(AuthContext);
   const navigate = useNavigate();
+
+  if (loading) {
+    return (
+      <div className="text-center mt-12">
+        <Spinner aria-label="Extra large  Center-aligned spinner example" />
+      </div>
+    );
+  }
 
   const handleRegisterForm = (event) => {
     event.preventDefault();

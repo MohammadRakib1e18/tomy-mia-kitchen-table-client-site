@@ -11,6 +11,7 @@ import AddReview from "../Pages/ReviewContainer/AddReview";
 import MyReviews from "../Pages/ReviewContainer/MyReviews";
 import AddService from "../Pages/AllServices/AddService";
 import PrivateRoute from "./PrivateRoute";
+import UpdateReview from "../Pages/ReviewContainer/UpdateReview";
 
 export const routes = createBrowserRouter([
   {
@@ -44,7 +45,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/addService",
-        element: <AddService></AddService>,
+        element: (
+          <PrivateRoute>
+            <AddService></AddService>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/myReviews",
@@ -53,6 +58,12 @@ export const routes = createBrowserRouter([
             <MyReviews></MyReviews>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/updateReview/:id",
+        element: <UpdateReview></UpdateReview>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/allReviews/${params.id}`),
       },
       {
         path: "/blogs",

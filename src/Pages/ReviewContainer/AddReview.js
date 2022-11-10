@@ -20,7 +20,6 @@ const AddReview = () => {
             return;
         }
         const date = new Date();
-        review['id'] = _id;
         review['message'] = message;
         review['rating'] = '5';
         review['username'] = user.displayName;

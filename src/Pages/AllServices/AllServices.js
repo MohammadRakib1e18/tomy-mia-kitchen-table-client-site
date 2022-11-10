@@ -1,12 +1,22 @@
-import React from "react";
+import { Spinner } from "flowbite-react";
+import React, { useContext } from "react";
 import { FaBahai } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 import Service from "./Service";
 
 const AllServices = () => {
   useTitle('Home - All Services');
   const services = useLoaderData();
+  const {loading} = useContext(AuthContext);
+  if (loading) {
+    return (
+      <div className="text-center mt-12">
+        <Spinner aria-label="Extra large  Center-aligned spinner example" />
+      </div>
+    );
+  }
   return (
     <div className="mt-16">
       <h2 className=" flex justify-center items-center gap-3 mt-3 text-2xl md:text-4xl  font-bold text-slate-200 merri-text">

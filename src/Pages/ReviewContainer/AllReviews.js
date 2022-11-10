@@ -1,17 +1,26 @@
-import React, { useEffect, useState } from "react";
+import { Spinner } from "flowbite-react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaBahai } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../contexts/AuthProvider";
 import Review from "./Review";
 
 const AllReviews = () => {
   const [reviews, setReviews] = useState([]);
-
+    const {loading} = useContext(AuthContext);
   useEffect(() => {
     fetch("http://localhost:5000/allReviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
+  if (loading) {
+    return (
+      <div className="text-center mt-12">
+        <Spinner aria-label="Extra large  Center-aligned spinner example" />
+      </div>
+    );
+  }
   const deleteReview = (_id) => {
     console.log("delete button", _id);
     Swal.fire({
