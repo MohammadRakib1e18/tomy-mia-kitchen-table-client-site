@@ -1,13 +1,16 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../contexts/AuthProvider";
 
-const Review = ({ review }) => {
-    const {user, loading} = useContext(AuthContext);
-    if(loading){
-        return <div>Loading...</div>
-    }
+const Review = ({ review, deleteReview }) => {
+  const { user, loading } = useContext(AuthContext);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   const {
+    _id,
     id,
     title,
     message,
@@ -16,9 +19,10 @@ const Review = ({ review }) => {
     service_photo,
     date,
     time,
-    email
+    email,
   } = review;
-  console.log("user: ", user_photo);
+
+  
   return (
     <div>
       <div className="min-h-16 container flex flex-col w-full max-w-lg p-3 mx-auto divide-y rounded-md divide-gray-700 bg-slate-800 text-gray-200">
@@ -67,7 +71,10 @@ const Review = ({ review }) => {
               <p className="text-lg merri-text ">{message}</p>
               {user?.email === email && (
                 <span className="flex flex-row gap-2 mt-7">
-                  <button className="bg-red-700 text-slate-200 px-5 py-1 rounded-sm font-semibold">
+                  <button
+                    onClick={()=> deleteReview(_id)}
+                    className="bg-red-700 text-slate-200 px-5 py-1 rounded-sm font-semibold"
+                  >
                     Delete
                   </button>
                   <button className="bg-cyan-600 text-slate-200 px-5 py-1 rounded-sm font-semibold">
