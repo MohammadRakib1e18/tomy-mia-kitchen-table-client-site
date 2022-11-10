@@ -61,6 +61,16 @@ const Navbar = () => {
             <li>
               <Link>About</Link>
             </li>
+            {user?.uid && (
+              <li>
+                <Link to="/myReviews">My Reviews</Link>
+              </li>
+            )}
+            {user?.uid && (
+              <li>
+                <Link to="/addService">Add Service</Link>
+              </li>
+            )}
             {user?.uid ? (
               <>
                 <button
@@ -98,9 +108,16 @@ const Navbar = () => {
           <li>
             <Link to="/blogs">Blogs</Link>
           </li>
-          <li>
-            <Link>About</Link>
-          </li>
+          {user?.uid && (
+            <li>
+              <Link to="/myReviews">My Reviews</Link>
+            </li>
+          )}
+          {user?.uid && (
+            <li>
+              <Link to="/addService">Add Service</Link>
+            </li>
+          )}
         </ul>
       </div>
       {user?.uid ? (
@@ -113,7 +130,10 @@ const Navbar = () => {
               Sign out
             </button>
           </div>
-          <span className="tooltip tooltip-left" data-tip={`${user.displayName}`}>
+          <span
+            className="tooltip tooltip-left"
+            data-tip={`${user.displayName}`}
+          >
             <img
               src={user.photoURL}
               className="w-12 rounded-full gap-2"
