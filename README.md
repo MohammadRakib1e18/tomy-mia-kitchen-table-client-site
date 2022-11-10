@@ -1,6 +1,6 @@
 # Tommy's Kitchen Table
 
-> Live site: [Tommy's Kitchen Table](https://kitchen-table-25175.firebaseapp.com/).
+> Live site: [Tommy's Kitchen Table](https://kitchen-table-25175.web.app/).
 
 Some Key Features:
 
