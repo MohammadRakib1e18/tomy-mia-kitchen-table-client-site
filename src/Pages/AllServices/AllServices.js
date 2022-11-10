@@ -1,9 +1,11 @@
 import React from "react";
 import { FaBahai } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 import Service from "./Service";
 
 const AllServices = () => {
+  useTitle('Home - All Services');
   const services = useLoaderData();
   return (
     <div className="mt-16">

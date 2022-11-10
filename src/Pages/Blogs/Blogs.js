@@ -5,8 +5,10 @@ import jwt_img from "../../images/jwt-workflow.webp";
 import jwt_img2 from '../../images/workflow_jwt.png'
 import "./Blogs.css";
 import "react-photo-view/dist/react-photo-view.css";
+import useTitle from "../../hooks/useTitle";
 
 const Blogs = () => {
+  useTitle('Home - Blogs');
   return (
     <div className="text-slate-200  mx-5">
       <h2 className="flex justify-center items-center gap-3 mt-3 text-3xl  font-bold underline">

@@ -4,9 +4,11 @@ import { FaBahai } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../contexts/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 import Review from "./Review";
 
 const MyReviews = () => {
+    useTitle('Home - My Reviews');
   const [reviews, setReviews] = useState([]);
   const { user, loading } = useContext(AuthContext);
   //   if (loading) {

@@ -1,8 +1,10 @@
 import React from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 const AddService = () => {
+  useTitle("Home - Add Service");
   const navigate = useNavigate();
   const handleSubmitService = (event) => {
     event.preventDefault();
@@ -31,12 +33,11 @@ const AddService = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.acknowledged){
-            toast.success("Service added successfully!");
-            navigate(`/services`);
+        if (data.acknowledged) {
+          toast.success("Service added successfully!");
+          navigate(`/services`);
         }
         toast.error("Failed to add service. Try again!");
-
       });
   };
   return (

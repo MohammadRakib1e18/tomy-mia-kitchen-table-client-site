@@ -5,8 +5,10 @@ import { FiEyeOff, FiEye } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider";
 import Swal from "sweetalert2";
+import useTitle from "../../hooks/useTitle";
 
 const Login = () => {
+  useTitle('Login');
   const [show, setShow] = useState(false);
   const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
    const navigate = useNavigate();

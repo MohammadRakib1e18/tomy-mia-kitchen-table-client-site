@@ -6,8 +6,10 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import Swal from "sweetalert2";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
+import useTitle from "../../hooks/useTitle";
 
 const Registration = () => {
+  useTitle('Registration');
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
   const { auth, createUser, googleSignIn, githubSignIn } =
