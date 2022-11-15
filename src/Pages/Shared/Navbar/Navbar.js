@@ -1,13 +1,16 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import navLogo from "../../../images/logo.jpg";
 import { FaBars, FaCut } from "react-icons/fa";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import toast from "react-hot-toast";
+import "./Navbar.css";
+import { FaSun } from "react-icons/fa";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
+  const [theme, setTheme] = useState(localStorage.getItem("theme"));
 
   const handleLogOut = () => {
     logOut()
@@ -19,8 +22,19 @@ const Navbar = () => {
       });
   };
 
+  useEffect(() => {
+    window.document.documentElement.setAttribute("class", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const changeTheme = () => {
+    const nextTheme = theme === "dark" ? "" : "dark";
+
+    setTheme(nextTheme);
+  };
+
   return (
-    <div className="navbar  bg-slate-800">
+    <div className="navbar  z-10  sticky top-0  bg-slate-800">
       <div className="navbar-start w-5/6 flex-col mx-auto">
         <div className="flex items-center">
           <div
@@ -31,6 +45,7 @@ const Navbar = () => {
           >
             {open ? <FaCut /> : <FaBars />}
           </div>
+
           <Link
             className="flex items-center justify-center md:justify-start text-xl w-5/6 lg:w-full  mx-auto"
             to="/"
@@ -45,37 +60,45 @@ const Navbar = () => {
               <span className="text-orange-400"> K</span>itchen
               <span className="text-orange-400"> T</span>able
             </h2>
+            <li
+              className="dark:text-white text-yellow-300 list-none ml-5"
+              onClick={changeTheme}
+            >
+              <span>
+                <FaSun />
+              </span>
+            </li>
           </Link>
         </div>
         <div className={open ? " md:hidden" : " hidden"}>
-          <ul className="menu menu-normal p-0 ">
+          <ul className="menu  menu-normal p-0 ">
             <li>
-              <Link to="/">Home</Link>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <Link to="/services">Services</Link>
+              <NavLink to="/services">Services</NavLink>
             </li>
             <li>
-              <Link to="/blogs">Blogs</Link>
+              <NavLink to="/blogs">Blogs</NavLink>
             </li>
             <li>
-              <Link>About</Link>
+              <NavLink>About</NavLink>
             </li>
             {user?.uid && (
               <li>
-                <Link to="/myReviews">My Reviews</Link>
+                <NavLink to="/myReviews">My Reviews</NavLink>
               </li>
             )}
             {user?.uid && (
               <li>
-                <Link to="/addService">Add Service</Link>
+                <NavLink to="/addService">Add Service</NavLink>
               </li>
             )}
             {user?.uid ? (
               <>
                 <button
                   onClick={handleLogOut}
-                  className="btn btn-link  text-md rounded-none font-semibold"
+                  className="btn btn-NavLink  text-md rounded-none font-semibold"
                 >
                   Sign out
                 </button>
@@ -88,11 +111,11 @@ const Navbar = () => {
                 </span>
               </>
             ) : (
-              <Link to="/login">
+              <NavLink to="/login">
                 <button className="btn btn-outline  text-lg rounded-none font-semibold">
                   Sign in
                 </button>
-              </Link>
+              </NavLink>
             )}
           </ul>
         </div>
@@ -100,22 +123,22 @@ const Navbar = () => {
       <div className="navbar-center hidden md:flex">
         <ul className="menu menu-horizontal p-0">
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <Link to="/services">Services</Link>
+            <NavLink to="/services">Services</NavLink>
           </li>
           <li>
-            <Link to="/blogs">Blogs</Link>
+            <NavLink to="/blogs">Blogs</NavLink>
           </li>
           {user?.uid && (
             <li>
-              <Link to="/myReviews">My Reviews</Link>
+              <NavLink to="/myReviews">My Reviews</NavLink>
             </li>
           )}
           {user?.uid && (
             <li>
-              <Link to="/addService">Add Service</Link>
+              <NavLink to="/addService">Add Service</NavLink>
             </li>
           )}
         </ul>
@@ -125,7 +148,7 @@ const Navbar = () => {
           <div className="text-xl">
             <button
               onClick={handleLogOut}
-              className="btn btn-link  text-md rounded-none font-semibold"
+              className="btn btn-NavLink  text-md rounded-none font-semibold"
             >
               Sign out
             </button>
@@ -143,11 +166,11 @@ const Navbar = () => {
         </div>
       ) : (
         <div className="navbar-end text-xl md:flex hidden">
-          <Link to="/login">
+          <NavLink to="/login">
             <button className="btn btn-outline btn-warning text-lg rounded-none font-semibold">
               Sign in
             </button>
-          </Link>
+          </NavLink>
         </div>
       )}
     </div>

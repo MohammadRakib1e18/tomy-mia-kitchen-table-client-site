@@ -1,0 +1,7 @@
+.active{
+    border-radius: 1px;
+    border-top: 2px solid rgb(207, 42, 42);
+    border-bottom: 2px solid rgb(207, 42, 42);
+    
+    background-color: transparent;
+}

@@ -32,7 +32,7 @@ const MyReviews = () => {
     Swal.fire({
       title: "Do you really want to delete the review?",
       showCancelButton: true,
-      confirmButtonText: "Save",
+      confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
