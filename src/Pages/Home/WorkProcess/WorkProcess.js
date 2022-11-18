@@ -4,7 +4,7 @@ import { FaShippingFast, FaPhoneVolume, FaSync, FaBahai } from "react-icons/fa";
 const WorkProcess = () => {
   return (
     <>
-      <h2 className="text-slate-200 mt-32 flex justify-center items-center gap-3 sm:text-3xl md:text-5xl text-xl  font-bold ">
+      <h2 className="text-slate-200 dark:text-slate-800  mt-32 flex justify-center items-center gap-3 sm:text-3xl md:text-5xl text-xl  font-bold ">
         <span className="spin-animation">🎯</span>
         <span>Your Expectation, My Commitment</span>
         <span className="spin-animation">🎯</span>

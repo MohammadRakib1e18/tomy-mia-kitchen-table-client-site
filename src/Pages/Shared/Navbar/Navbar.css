@@ -1,7 +1,9 @@
 .active{
-    border-radius: 1px;
-    border-top: 2px solid rgb(207, 42, 42);
-    border-bottom: 2px solid rgb(207, 42, 42);
-    
-    background-color: transparent;
+    background-color: rgba(52, 88, 129, 0.24);
+}
+.light-bg{
+    background-color: rgba(240, 248, 255, 0.877);
+}
+.dark-bg{
+    background-color: #0F1729;
 }

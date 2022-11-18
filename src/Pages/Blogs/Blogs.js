@@ -11,7 +11,7 @@ const Blogs = () => {
   useTitle('Home - Blogs');
   return (
     <div className="text-slate-200  mx-5">
-      <h2 className="flex justify-center items-center gap-3 mt-3 text-3xl  font-bold underline">
+      <h2 className="flex justify-center items-center gap-3 mt-3 text-3xl  font-bold underline dark:text-slate-800">
         <span className="spin-animation">
           <FaBahai />
         </span>

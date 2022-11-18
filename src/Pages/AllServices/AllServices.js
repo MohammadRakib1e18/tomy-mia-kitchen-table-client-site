@@ -19,7 +19,7 @@ const AllServices = () => {
   }
   return (
     <div className="mt-16">
-      <h2 className=" flex justify-center items-center gap-3 mt-3 text-2xl md:text-4xl  font-bold text-slate-200 merri-text">
+      <h2 className=" flex justify-center items-center gap-3 mt-3 text-2xl md:text-4xl  font-bold text-slate-200 dark:text-slate-800 merri-text">
         <span className="spin-animation">
           <FaBahai />
         </span>

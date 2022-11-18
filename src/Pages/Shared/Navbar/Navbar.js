@@ -10,7 +10,7 @@ import { FaSun } from "react-icons/fa";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
-  const [theme, setTheme] = useState(localStorage.getItem("theme"));
+  const [theme, setTheme] = useState(localStorage.getItem("theme")||'light');
 
   const handleLogOut = () => {
     logOut()
@@ -23,12 +23,19 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    window.document.documentElement.setAttribute("class", theme);
+    let html = window.document.documentElement;
+    html.setAttribute("class", theme);
+    if(theme==='dark'){
+      html.classList.add('light-bg');
+    }
+    else{
+      html.classList.add('dark-bg');
+    }
     localStorage.setItem("theme", theme);
   }, [theme]);
 
   const changeTheme = () => {
-    const nextTheme = theme === "dark" ? "" : "dark";
+    const nextTheme = theme === "dark" ? "light" : "dark";
 
     setTheme(nextTheme);
   };
@@ -46,10 +53,7 @@ const Navbar = () => {
             {open ? <FaCut /> : <FaBars />}
           </div>
 
-          <Link
-            className="flex items-center justify-center md:justify-start text-xl w-5/6 lg:w-full  mx-auto"
-            to="/"
-          >
+          <Link className="flex items-center justify-center md:justify-start text-xl w-5/6 lg:w-full  mx-auto">
             <img
               className="w-1/12 md:w-1/12 mr-2 rounded-full"
               src={navLogo}
@@ -61,7 +65,7 @@ const Navbar = () => {
               <span className="text-orange-400"> T</span>able
             </h2>
             <li
-              className="dark:text-white text-yellow-300 list-none ml-5"
+              className="text-white dark:text-yellow-300 list-none ml-5"
               onClick={changeTheme}
             >
               <span>
@@ -72,7 +76,7 @@ const Navbar = () => {
         </div>
         <div className={open ? " md:hidden" : " hidden"}>
           <ul className="menu  menu-normal p-0 ">
-            <li>
+            <li >
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
@@ -80,9 +84,6 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink to="/blogs">Blogs</NavLink>
-            </li>
-            <li>
-              <NavLink>About</NavLink>
             </li>
             {user?.uid && (
               <li>
@@ -98,7 +99,7 @@ const Navbar = () => {
               <>
                 <button
                   onClick={handleLogOut}
-                  className="btn btn-NavLink  text-md rounded-none font-semibold"
+                  className="btn btn-outline btn-warning  text-md rounded-none font-semibold"
                 >
                   Sign out
                 </button>
@@ -111,11 +112,11 @@ const Navbar = () => {
                 </span>
               </>
             ) : (
-              <NavLink to="/login">
+              <Link to="/login">
                 <button className="btn btn-outline  text-lg rounded-none font-semibold">
                   Sign in
                 </button>
-              </NavLink>
+              </Link>
             )}
           </ul>
         </div>
@@ -148,7 +149,7 @@ const Navbar = () => {
           <div className="text-xl">
             <button
               onClick={handleLogOut}
-              className="btn btn-NavLink  text-md rounded-none font-semibold"
+              className="btn btn-outline btn-warning  text-md rounded-none font-semibold"
             >
               Sign out
             </button>
@@ -166,11 +167,11 @@ const Navbar = () => {
         </div>
       ) : (
         <div className="navbar-end text-xl md:flex hidden">
-          <NavLink to="/login">
+          <Link to="/login">
             <button className="btn btn-outline btn-warning text-lg rounded-none font-semibold">
               Sign in
             </button>
-          </NavLink>
+          </Link>
         </div>
       )}
     </div>

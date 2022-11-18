@@ -5,7 +5,7 @@ import offer2 from "../../../images/o2.jpg";
 const Offers = () => {
   return (
     <>
-      <h2 className="text-2xl sm:text-3xl md:text-5xl text-center merri-text text-slate-200 mb-5 mt-32">
+      <h2 className="text-2xl sm:text-3xl md:text-5xl text-center merri-text text-slate-200 dark:text-slate-800 mb-5 mt-32">
         🌮 My Special Offers 🍲
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-11/12 mx-auto text-slate-100">
@@ -45,8 +45,8 @@ const Offers = () => {
           <div className="card-body md:w-2/3 w-full">
             <h2 className="card-title">Weekly Pizzas Day!</h2>
             <p className="mt-4">
-              Pizzas are absolutely amazing. Now, it may be a lot easier to
-              take a chance to taste it! Take a look with our pizza offer
+              Pizzas are absolutely amazing. Now, it may be a lot easier to take
+              a chance to taste it! Take a look with our pizza offer
             </p>
             <h1 className="text-2xl">
               <span className="text-7xl text-yellow-300  merri-text">15%</span>{" "}

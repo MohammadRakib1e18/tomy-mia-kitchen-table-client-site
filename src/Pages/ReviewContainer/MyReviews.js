@@ -60,7 +60,7 @@ const MyReviews = () => {
     <>
       {reviews.length ? (
         <div>
-          <h2 className="flex justify-center items-center gap-3 mt-3 text-3xl  font-bold underline text-slate-200">
+          <h2 className="flex justify-center items-center gap-3 mt-3 text-3xl  font-bold underline text-slate-200 dark:text-slate-800">
             <span className="spin-animation">
               <FaBahai />
             </span>
@@ -80,7 +80,7 @@ const MyReviews = () => {
           </div>
         </div>
       ) : (
-        <div className="min-h-screen flex flex-col justify-center items-center text-slate-200">
+        <div className="min-h-screen flex flex-col justify-center items-center text-slate-200 dark:text-slate-800">
           <h2 className="md:text-5xl text-center font-bold">
             No reviews were added
           </h2>
