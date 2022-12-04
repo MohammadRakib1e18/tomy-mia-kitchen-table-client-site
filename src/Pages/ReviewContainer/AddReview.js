@@ -31,7 +31,6 @@ const AddReview = () => {
     review["title"] = title;
     review["price"] = price;
     review["service_photo"] = image_url;
-    console.log(review);
 
     fetch("https://resturant-site-server.vercel.app/addReview", {
       method: "POST",
@@ -42,7 +41,6 @@ const AddReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         toast.success("Review added successfully!");
         navigate(`/services/${_id}`);
       });

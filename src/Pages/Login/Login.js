@@ -9,20 +9,21 @@ import useTitle from "../../hooks/useTitle";
 import { Spinner } from "flowbite-react";
 
 const Login = () => {
-  useTitle('Login');
+  useTitle("Login");
   const [show, setShow] = useState(false);
-  const { loading, signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
-  
-   const navigate = useNavigate();
-   const location = useLocation();
-   const from = location.state?.from?.pathname || "/";
-   if (loading) {
-     return (
-       <div className="text-center mt-12">
-         <Spinner aria-label="Extra large  Center-aligned spinner example" />
-       </div>
-     );
-   }
+  const { loading, signIn, googleSignIn, githubSignIn } =
+    useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  if (loading) {
+    return (
+      <div className="text-center mt-12">
+        <Spinner aria-label="Extra large  Center-aligned spinner example" />
+      </div>
+    );
+  }
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -32,23 +33,34 @@ const Login = () => {
 
     signIn(email, password)
       .then((result) => {
-        Swal.fire({
-          icon: "success",
-          title: `Login Successful!`,
-          showConfirmButton: true,
-          timer: 1500,
-        });
-        navigate(from, { replace: true });
+        const user = result.user;
+
+        const currentUser = {
+          email: user.email,
+        };
+
+        // get jwt token
+        fetch("https://resturant-site-server.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("resturant-token", data.token);
+            navigate(from, { replace: true });
+          });
       })
       .catch((error) => {
-       toast.error(`${error.message}`);
+        toast.error(`login error: ${error.message}`);
       });
   };
 
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
-        console.log(result.user);
         toast.success("SignIn with Google Successful!");
         navigate(from, { replace: true });
       })

@@ -8,12 +8,10 @@ import { AuthContext } from "../../contexts/AuthProvider";
 
 const ServiceDetails = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
 
   const service = useLoaderData();
   const { _id, title, price, details, image_url, rating, total_view } = service;
   const fullStar = Math.ceil(parseInt(rating));
-  console.log(typeof fullStar);
   let starArray = [1,2,3,4,5];
   return (
     <div>

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaBahai } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../contexts/AuthProvider";
 import useTitle from "../../hooks/useTitle";
@@ -10,23 +10,31 @@ import Review from "./Review";
 const MyReviews = () => {
   useTitle("Home - My Reviews");
   const [reviews, setReviews] = useState([]);
-  const { user, loading } = useContext(AuthContext);
-  // if (loading) {
-  //   return <div className="text-center mt-12">
-  //     <Spinner aria-label="Extra large  Center-aligned spinner example" />
-  //   </div>;
-  // }
-  // console.log(user.email);
+  const navigate = useNavigate();
+  const { user, loading, logOut } = useContext(AuthContext);
 
   useEffect(() => {
     if (!loading) {
       fetch(
-        `https://resturant-site-server.vercel.app/allReviews?email=${user?.email}`
+        `https://resturant-site-server.vercel.app/allReviews?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("resturant-token")}`,
+          },
+        }
       )
-        .then((res) => res.json())
-        .then((data) => setReviews(data));
+        .then((res) => {
+          if (res.status === 401 || res.status === 403) {
+            logOut();
+            navigate("/login");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setReviews(data);
+        });
     }
-  }, [user?.email]);
+  }, [user?.email, loading, logOut, navigate]);
 
   const deleteReview = (_id) => {
     Swal.fire({
@@ -43,7 +51,6 @@ const MyReviews = () => {
         )
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             if (data.deletedCount > 0) {
               toast.success("Review Deleted Successful!");
               const remainingReviews = reviews.filter(

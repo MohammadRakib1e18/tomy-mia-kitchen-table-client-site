@@ -20,8 +20,8 @@ const Blogs = () => {
           <FaBahai />
         </span>
       </h2>
-      <div className="blog-container grid lg:grid-cols-2 grid-cols-1 gap-5 mt-8">
-        <div className="card w-full bg-slate-700 shadow-xl rounded-none">
+      <div className="w-3/4 mx-auto blog-container grid  grid-cols-1 gap-y-[100px] mt-8">
+        <div className="card w-full bg-slate-700 shadow-2xl rounded-none">
           <div className="card-body">
             <h2 className="card-title">
               Q1: What is the differences between SQL and NoSQL?
@@ -64,7 +64,7 @@ const Blogs = () => {
             </div>
           </div>
         </div>
-        <div className="card w-full bg-slate-700 shadow-xl rounded-none">
+        <div className="card w-full bg-slate-700 shadow-2xl rounded-none">
           <div className="card-body">
             <h2 className="card-title">
               Q2: What is JWT, and how does it work?
@@ -105,7 +105,7 @@ const Blogs = () => {
             </div>
           </div>
         </div>
-        <div className="card w-full bg-slate-700 shadow-xl rounded-none">
+        <div className="card w-full bg-slate-700 shadow-2xl rounded-none">
           <div className="card-body">
             <h2 className="card-title">
               Q3: What is the difference between javascript and NodeJS?
@@ -147,7 +147,7 @@ const Blogs = () => {
             </div>
           </div>
         </div>
-        <div className="card w-full bg-slate-700 shadow-xl rounded-none">
+        <div className="card w-full bg-slate-700 shadow-2xl rounded-none">
           <div className="card-body">
             <h2 className="card-title">
               Q4: How does NodeJS handle multiple requests at the same time?

@@ -15,7 +15,7 @@ const Navbar = () => {
   const handleLogOut = () => {
     logOut()
       .then((result) => {
-        toast.success("You've been successfully logged out❗");
+        toast.success("You've been successfully logged out!");
       })
       .catch((error) => {
         toast.error(`${error.message}`);
@@ -39,6 +39,8 @@ const Navbar = () => {
 
     setTheme(nextTheme);
   };
+
+  console.log(user?.email, user?.photoURL);
 
   return (
     <div className="navbar  z-10  sticky top-0  bg-slate-800">
@@ -76,7 +78,7 @@ const Navbar = () => {
         </div>
         <div className={open ? " md:hidden" : " hidden"}>
           <ul className="menu  menu-normal p-0 ">
-            <li >
+            <li>
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
@@ -154,16 +156,16 @@ const Navbar = () => {
               Sign out
             </button>
           </div>
-          <span
+          <div
             className="tooltip tooltip-left"
-            data-tip={`${user.displayName}`}
+            data-tip={`${user?.displayName}`}
           >
             <img
-              src={user.photoURL}
+              src={`${user?.photoURL}`}
               className="w-12 rounded-full gap-2"
               alt=""
             />
-          </span>
+          </div>
         </div>
       ) : (
         <div className="navbar-end text-xl md:flex hidden">

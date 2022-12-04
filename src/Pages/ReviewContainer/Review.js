@@ -18,10 +18,6 @@ const Review = ({ review, deleteReview }) => {
     time,
     email,
   } = review;
-
-  const updateReview = () =>{
-    console.log('updated info');
-  }
   
   return (
     <div>
