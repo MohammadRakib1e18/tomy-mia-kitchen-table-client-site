@@ -63,7 +63,7 @@ const Review = ({ review, deleteReview }) => {
               {title}
             </h2>
 
-            <div className="">
+            <div >
               <p className="text-lg merri-text ">{message}</p>
               {user?.email === email && (
                 <span className="flex flex-row gap-2 mt-7">
