@@ -43,8 +43,8 @@ const Navbar = () => {
   console.log(user?.email, user?.photoURL);
 
   return (
-    <div className="navbar  z-10  sticky top-0  bg-slate-800">
-      <div className="navbar-start w-5/6 flex-col mx-auto">
+    <div className="navbar z-10  sticky top-0  bg-slate-800">
+      <div className="text-slate-400 navbar-start w-5/6 flex-col mx-auto">
         <div className="flex items-center">
           <div
             className="mr-5 md:hidden"
@@ -77,7 +77,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className={open ? " md:hidden" : " hidden"}>
-          <ul className="menu  menu-normal p-0 ">
+          <ul className="text-slate-200 menu  menu-normal p-0 ">
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
@@ -124,7 +124,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center hidden md:flex">
-        <ul className="menu menu-horizontal p-0">
+        <ul className="text-slate-200 menu menu-horizontal p-0">
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
