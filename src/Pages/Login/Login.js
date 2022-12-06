@@ -4,7 +4,6 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider";
-import Swal from "sweetalert2";
 import useTitle from "../../hooks/useTitle";
 import { Spinner } from "flowbite-react";
 

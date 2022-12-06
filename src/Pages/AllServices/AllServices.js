@@ -7,7 +7,7 @@ import useTitle from "../../hooks/useTitle";
 import Service from "./Service";
 
 const AllServices = () => {
-  useTitle('Home - All Services');
+  useTitle('All Services');
   const services = useLoaderData();
   const {loading} = useContext(AuthContext);
   if (loading) {

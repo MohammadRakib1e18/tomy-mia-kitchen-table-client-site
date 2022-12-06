@@ -43,7 +43,7 @@ const Navbar = () => {
   console.log(user?.email, user?.photoURL);
 
   return (
-    <div className="navbar z-10  sticky top-0  bg-slate-800">
+    <div className="navbar z-10  sticky top-0  bg-slate-800 dark:bg-slate-200">
       <div className="text-slate-400 navbar-start w-5/6 flex-col mx-auto">
         <div className="flex items-center">
           <div
@@ -55,13 +55,13 @@ const Navbar = () => {
             {open ? <FaCut /> : <FaBars />}
           </div>
 
-          <Link className="flex items-center justify-center md:justify-start text-xl w-5/6 lg:w-full  mx-auto">
+          <div className="flex items-center justify-center md:justify-start text-xl w-5/6 lg:w-full  mx-auto">
             <img
               className="w-1/12 md:w-1/12 mr-2 rounded-full"
               src={navLogo}
               alt=""
             />
-            <h2>
+            <h2 className="text-slate-300 dark:text-slate-800">
               <span className="text-orange-400">T</span>ommy's
               <span className="text-orange-400"> K</span>itchen
               <span className="text-orange-400"> T</span>able
@@ -74,10 +74,10 @@ const Navbar = () => {
                 <FaSun />
               </span>
             </li>
-          </Link>
+          </div>
         </div>
         <div className={open ? " md:hidden" : " hidden"}>
-          <ul className="text-slate-200 menu  menu-normal p-0 ">
+          <ul className="text-slate-200 dark:text-slate-800 menu  menu-normal p-0 ">
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
@@ -124,7 +124,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center hidden md:flex">
-        <ul className="text-slate-200 menu menu-horizontal p-0">
+        <ul className="text-slate-200 dark:text-slate-800 menu menu-horizontal p-0">
           <li>
             <NavLink to="/">Home</NavLink>
           </li>

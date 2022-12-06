@@ -15,19 +15,19 @@ const Footer = () => {
       <div>
         <div className="form-control w-80">
           <label className="label mx-auto">
-            <span className="label-text">
+            <span className="label-text text-slate-400">
               🥧 Subscribe to get new service 🥧
             </span>
           </label>
-          <form onSubmit={handleSubscribe} className="relative">
+          <form onSubmit={handleSubscribe} className="flex">
             <input
               type="email"
               name="email"
               placeholder="abc@gmail.com"
-              className="input input-bordered w-full pr-16"
+              className="input focus:outline-0 focus:border-0 rounded-none w-full pr-16"
               required
             />
-            <button className="btn btn-primary absolute top-0 right-0 rounded-l-none">
+            <button className="btn  rounded-l-none ">
               Subscribe
             </button>
           </form>
@@ -35,13 +35,25 @@ const Footer = () => {
       </div>
       <div>
         <div className="mt-4 flex justify-between space-x-8 text-3xl">
-          <a href="https://www.facebook.com" target="_blank" rel="noreferrer">
+          <a
+            href="https://www.facebook.com/rakib.molla.9634340/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <FaFacebookSquare />
           </a>
-          <a href="https://www.github.com" target="_blank" rel="noreferrer">
+          <a
+            href="https://github.com/MohammadRakib1e18?tab=repositories"
+            target="_blank"
+            rel="noreferrer"
+          >
             <FaGithub />
           </a>
-          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
+          <a
+            href="https://www.linkedin.com/in/mohammad-rakib1/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <FaLinkedin />
           </a>
         </div>

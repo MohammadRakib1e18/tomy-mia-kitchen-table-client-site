@@ -8,7 +8,7 @@ import useTitle from "../../hooks/useTitle";
 import Review from "./Review";
 
 const MyReviews = () => {
-  useTitle("Home - My Reviews");
+  useTitle("My Reviews");
   const [reviews, setReviews] = useState([]);
   const navigate = useNavigate();
   const { user, loading, logOut } = useContext(AuthContext);

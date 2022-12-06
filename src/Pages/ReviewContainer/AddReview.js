@@ -5,7 +5,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 
 const AddReview = () => {
-  useTitle("Home - Add Review");
+  useTitle("Add Review");
   const [message, setMessage] = useState("");
   const { user } = useContext(AuthContext);
 

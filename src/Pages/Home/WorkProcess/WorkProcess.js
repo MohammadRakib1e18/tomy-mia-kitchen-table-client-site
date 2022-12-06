@@ -1,5 +1,5 @@
 import React from "react";
-import { FaShippingFast, FaPhoneVolume, FaSync, FaBahai } from "react-icons/fa";
+import { FaShippingFast, FaPhoneVolume, FaSync } from "react-icons/fa";
 
 const WorkProcess = () => {
   return (

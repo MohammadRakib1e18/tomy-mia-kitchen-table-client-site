@@ -9,7 +9,10 @@ const Offers = () => {
         🌮 My Special Offers 🍲
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-11/12 mx-auto text-slate-100">
-        <div className="flex-col sm:flex-row card card-side bg-slate-700 shadow-xl rounded-none">
+        <div
+          
+          className="flex-col sm:flex-row card card-side bg-slate-700 shadow-xl rounded-none"
+        >
           <figure className="md:w-1/3 md:ml-3 w-2/3 mx-auto">
             <img
               className="w-full rounded-full border-2 border-yellow-400"
@@ -34,7 +37,10 @@ const Offers = () => {
             </div>
           </div>
         </div>
-        <div className="flex-col sm:flex-row card card-side bg-slate-700 shadow-xl rounded-none">
+        <div
+          
+          className="flex-col sm:flex-row card card-side bg-slate-700 shadow-xl rounded-none"
+        >
           <figure className="md:w-1/3 md:ml-3 w-2/3 mx-auto">
             <img
               className="w-full rounded-full border-2 border-yellow-400"

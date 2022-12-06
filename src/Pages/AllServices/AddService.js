@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useTitle from "../../hooks/useTitle";
 
 const AddService = () => {
-  useTitle("Home - Add Service");
+  useTitle("Add Service");
   const navigate = useNavigate();
   const handleSubmitService = (event) => {
     event.preventDefault();
