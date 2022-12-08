@@ -155,14 +155,14 @@ const Navbar = () => {
           </div>
           {user?.photoURL && (
             <div
-              className="tooltip tooltip-left"
+              className="tooltip tooltip-left mx-2"
               data-tip={`${user?.displayName}`}
             >
-              <img
-                src={`${user?.photoURL}`}
-                className="w-12 rounded-full gap-2"
-                alt=""
-              />
+              <div className="avatar online">
+                <div className="w-10 h-10 border rounded-full">
+                  <img src={user?.photoURL} alt='' />
+                </div>
+              </div>
             </div>
           )}
         </div>
