@@ -23,7 +23,7 @@ const ServiceDetails = () => {
                 <img
                   src={image_url}
                   alt=""
-                  className="w-full object-cover rounded-lg"
+                  className="w-full object-cover cursor-zoom-in rounded-lg"
                 />
               </PhotoView>
             </PhotoProvider>
@@ -50,7 +50,7 @@ const ServiceDetails = () => {
             </Rating>
             <p className="py-6 md:w-2/3 ">{details}</p>
             <h1 className="text-4xl font-semibold text-red-600">${price}</h1>
-            <button className="mt-8 btn btn-warning rounded-none text-xl px-12">
+            <button className="mt-8 btn btn-warning rounded-full text-xl px-12">
               Order Now
             </button>
           </div>

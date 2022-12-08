@@ -10,7 +10,7 @@ import { FaSun } from "react-icons/fa";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
-  const [theme, setTheme] = useState(localStorage.getItem("theme")||'light');
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   const handleLogOut = () => {
     logOut()
@@ -25,11 +25,10 @@ const Navbar = () => {
   useEffect(() => {
     let html = window.document.documentElement;
     html.setAttribute("class", theme);
-    if(theme==='dark'){
-      html.classList.add('light-bg');
-    }
-    else{
-      html.classList.add('dark-bg');
+    if (theme === "dark") {
+      html.classList.add("light-bg");
+    } else {
+      html.classList.add("dark-bg");
     }
     localStorage.setItem("theme", theme);
   }, [theme]);
@@ -39,8 +38,6 @@ const Navbar = () => {
 
     setTheme(nextTheme);
   };
-
-  console.log(user?.email, user?.photoURL);
 
   return (
     <div className="navbar z-10  sticky top-0  bg-slate-800 dark:bg-slate-200">
@@ -151,26 +148,28 @@ const Navbar = () => {
           <div className="text-xl">
             <button
               onClick={handleLogOut}
-              className="btn btn-outline btn-warning  text-md rounded-none font-semibold"
+              className="min-h-0 h-6 btn btn-outline btn-warning  text-md rounded-full font-semibold"
             >
               Sign out
             </button>
           </div>
-          <div
-            className="tooltip tooltip-left"
-            data-tip={`${user?.displayName}`}
-          >
-            <img
-              src={`${user?.photoURL}`}
-              className="w-12 rounded-full gap-2"
-              alt=""
-            />
-          </div>
+          {user?.photoURL && (
+            <div
+              className="tooltip tooltip-left"
+              data-tip={`${user?.displayName}`}
+            >
+              <img
+                src={`${user?.photoURL}`}
+                className="w-12 rounded-full gap-2"
+                alt=""
+              />
+            </div>
+          )}
         </div>
       ) : (
         <div className="navbar-end text-xl md:flex hidden">
           <Link to="/login">
-            <button className="btn btn-outline btn-warning text-lg rounded-none font-semibold">
+            <button className="btn btn-outline btn-warning text-lg rounded-full font-semibold">
               Sign in
             </button>
           </Link>

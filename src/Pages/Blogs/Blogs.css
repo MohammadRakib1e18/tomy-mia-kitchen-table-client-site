@@ -18,7 +18,7 @@
     animation: logo-spin infinite 2s linear;
 }
 .spin-animation2{
-  animation: logo-spin infinite 60s linear;
+  animation: logo-spin infinite 100s linear;
 }
 @keyframes logo-spin {
   from {
