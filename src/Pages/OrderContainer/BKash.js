@@ -9,7 +9,7 @@ import useTitle from "../../hooks/useTitle";
 import bkashLogo from "../../images/bkash_payment_logo.png";
 
 const BKash = () => {
-  useTitle("Add Service");
+  useTitle("BKash Payment");
   const { user, loading } = useContext(AuthContext);
   const [service, setService] = useState([]);
   const navigate = useNavigate();
