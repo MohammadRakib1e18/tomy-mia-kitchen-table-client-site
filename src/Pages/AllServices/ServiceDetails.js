@@ -12,7 +12,7 @@ const ServiceDetails = () => {
   const service = useLoaderData();
   const { _id, title, price, details, image_url, rating, total_view } = service;
   const fullStar = Math.ceil(parseInt(rating));
-  let starArray = [1,2,3,4,5];
+  let starArray = [1, 2, 3, 4, 5];
   return (
     <div>
       <div className="hero min-h-screen bg-slate-700 text-slate-200">
@@ -50,9 +50,25 @@ const ServiceDetails = () => {
             </Rating>
             <p className="py-6 md:w-2/3 ">{details}</p>
             <h1 className="text-4xl font-semibold text-red-600">${price}</h1>
-            <button className="mt-8 btn btn-warning rounded-full text-xl px-12">
-              Order Now
-            </button>
+            <div className="dropdown dropdown-bottom rounded-none ">
+              <label
+                tabIndex={0}
+                className="mt-8 btn btn-warning rounded-full text-xl px-12 cursor-pointer"
+              >
+                Order Now
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu p-2 mt-1 space-y-3 shadow text-slate-200 w-52 rounded-md bg-slate-800"
+              >
+                <li className="bg-slate-700">
+                  <Link to="/bkash">BKash</Link>
+                </li>
+                <li className="bg-slate-700">
+                  <Link to="/stripe">Stripe</Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

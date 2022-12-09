@@ -32,7 +32,7 @@ const AddReview = () => {
     review["price"] = price;
     review["service_photo"] = image_url;
 
-    fetch("https://resturant-site-server.vercel.app/addReview", {
+    fetch("http://localhost:5000/addReview", {
       method: "POST",
       headers: {
         "content-type": "application/json",

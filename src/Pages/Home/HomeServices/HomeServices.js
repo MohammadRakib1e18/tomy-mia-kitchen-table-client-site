@@ -6,7 +6,7 @@ import Service from "../../AllServices/Service";
 const HomeServices = () => {
   const [services, setServices] = useState([]);
   useEffect(() => {
-    fetch("https://resturant-site-server.vercel.app/homeServices")
+    fetch("http://localhost:5000/homeServices")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);

@@ -20,44 +20,45 @@ const AddService = () => {
       toast.error("rating must be less then 6");
       return;
     }
-    if(details.length>200){
-      toast.error(`Description length:${details.length}. It should be maximum 200 characters`);
+    if (details.length > 200) {
+      toast.error(
+        `Description length:${details.length}. It should be maximum 200 characters`
+      );
       return;
     }
     const photo = data.image_url[0];
     console.log(photo);
-    const service = {title, details, rating, image_url, price};
+    const service = { title, details, rating, image_url, price };
     const formData = new FormData();
     formData.append("image", photo);
 
     const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
     fetch(url, {
-      method:'POST',
-      body:formData,
+      method: "POST",
+      body: formData,
     })
-    .then(res => res.json())
-    .then(data=>{
-      console.log(data);
-      if(data.success){
-        service.image_url = data.data.url;
-        fetch("https://resturant-site-server.vercel.app/addService", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(service),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.acknowledged) {
-              toast.success("Service added successfully!");
-              navigate(`/services`);
-            }
-            toast.error("Failed to add service. Try again!");
-          });
-      }
-    })
-    
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.success) {
+          service.image_url = data.data.url;
+          fetch("http://localhost:5000/addService", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(service),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.acknowledged) {
+                toast.success("Service added successfully!");
+                navigate(`/services`);
+              }
+              toast.error("Failed to add service. Try again!");
+            });
+        }
+      });
   };
   return (
     <div className="mt-8 w-5/6 mx-auto max-w-md p-8 space-y-3   bg-slate-700   text-gray-100">

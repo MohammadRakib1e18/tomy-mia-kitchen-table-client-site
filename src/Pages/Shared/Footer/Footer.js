@@ -9,6 +9,7 @@ const Footer = () => {
     toast.success(`${email} has been subscribed successfully!`);
     event.target.reset();
   };
+
   return (
     <footer className="footer gap-y-5 mt-24 footer-center p-8 pb-5 bg-slate-800 text-slate-300 rounded">
       <h2 className="text-5xl">🥧</h2>
@@ -27,7 +28,7 @@ const Footer = () => {
               className="input focus:outline-0 focus:border-0 rounded-none w-full pr-16"
               required
             />
-            <button className="btn  rounded-l-none ">
+            <button className="btn  rounded-l-none text-slate-300">
               Subscribe
             </button>
           </form>

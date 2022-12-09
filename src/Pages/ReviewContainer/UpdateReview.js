@@ -14,7 +14,7 @@ const UpdateReview = () => {
       return;
     }
     review.message = msg;
-    fetch(`https://resturant-site-server.vercel.app/allReviews/${_id}`, {
+    fetch(`http://localhost:5000/allReviews/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

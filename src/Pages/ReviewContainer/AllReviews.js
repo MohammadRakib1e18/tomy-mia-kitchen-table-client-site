@@ -13,7 +13,7 @@ const AllReviews = () => {
   const { loading, logOut } = useContext(AuthContext);
   useEffect(() => {
     if (!loading) {
-      fetch(`https://resturant-site-server.vercel.app/allReviews`, {
+      fetch(`http://localhost:5000/allReviews`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("resturant-token")}`,
         },
@@ -46,12 +46,9 @@ const AllReviews = () => {
       confirmButtonText: "Save",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `https://resturant-site-server.vercel.app/services/delete/${_id}`,
-          {
-            method: "DELETE",
-          }
-        )
+        fetch(`http://localhost:5000/services/delete/${_id}`, {
+          method: "DELETE",
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -70,7 +67,7 @@ const AllReviews = () => {
       {reviews.length ? (
         <div>
           <h2 className=" flex justify-center items-center gap-3 mt-16 text-2xl md:text-4xl  font-bold text-slate-200 dark:text-slate-800 merri-text">
-            <span className="spin-animation">
+            <span className="spin-animation relative -z-10">
               <FaBahai />
             </span>
             <span>Customers Feedback</span>

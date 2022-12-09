@@ -12,6 +12,8 @@ import MyReviews from "../Pages/ReviewContainer/MyReviews";
 import AddService from "../Pages/AllServices/AddService";
 import PrivateRoute from "./PrivateRoute";
 import UpdateReview from "../Pages/ReviewContainer/UpdateReview";
+import BKash from "../Pages/OrderContainer/BKash";
+import Stripe from "../Pages/OrderContainer/Stripe";
 
 export const routes = createBrowserRouter([
   {
@@ -25,16 +27,13 @@ export const routes = createBrowserRouter([
       {
         path: "/services",
         element: <AllServices></AllServices>,
-        loader: () =>
-          fetch("https://resturant-site-server.vercel.app/services"),
+        loader: () => fetch("http://localhost:5000/services"),
       },
       {
         path: "/services/:id",
         element: <ServiceDetails></ServiceDetails>,
         loader: ({ params }) =>
-          fetch(
-            `https://resturant-site-server.vercel.app/services/${params.id}`
-          ),
+          fetch(`http://localhost:5000/services/${params.id}`),
       },
       {
         path: "/addReview/:id",
@@ -44,9 +43,7 @@ export const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://resturant-site-server.vercel.app/services/${params.id}`
-          ),
+          fetch(`http://localhost:5000/services/${params.id}`),
       },
       {
         path: "/addService",
@@ -68,9 +65,7 @@ export const routes = createBrowserRouter([
         path: "/updateReview/:id",
         element: <UpdateReview></UpdateReview>,
         loader: ({ params }) =>
-          fetch(
-            `https://resturant-site-server.vercel.app/allReviews/${params.id}`
-          ),
+          fetch(`http://localhost:5000/allReviews/${params.id}`),
       },
       {
         path: "/blogs",
@@ -84,6 +79,14 @@ export const routes = createBrowserRouter([
         path: "/registration",
         element: <Registration></Registration>,
       },
+      {
+        path:'/bkash',
+        element: <BKash></BKash>
+      },
+      {
+        path: '/stripe',
+        element: <Stripe></Stripe>
+      }
     ],
   },
   {

@@ -15,14 +15,11 @@ const MyReviews = () => {
 
   useEffect(() => {
     if (!loading) {
-      fetch(
-        `https://resturant-site-server.vercel.app/allReviews?email=${user?.email}`,
-        {
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("resturant-token")}`,
-          },
-        }
-      )
+      fetch(`http://localhost:5000/allReviews?email=${user?.email}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("resturant-token")}`,
+        },
+      })
         .then((res) => {
           if (res.status === 401 || res.status === 403) {
             logOut();
@@ -43,12 +40,9 @@ const MyReviews = () => {
       confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `https://resturant-site-server.vercel.app/services/delete/${_id}`,
-          {
-            method: "DELETE",
-          }
-        )
+        fetch(`http://localhost:5000/services/delete/${_id}`, {
+          method: "DELETE",
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
