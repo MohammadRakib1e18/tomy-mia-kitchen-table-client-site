@@ -1,8 +1,9 @@
 import { Spinner } from "flowbite-react";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 import bkashLogo from "../../images/bkash_payment_logo.png";
@@ -10,19 +11,25 @@ import bkashLogo from "../../images/bkash_payment_logo.png";
 const BKash = () => {
   useTitle("Add Service");
   const { user, loading } = useContext(AuthContext);
-  console.log(user);
-  const service = useLoaderData();
-  //   const { _id, title, price, details, image_url, rating, total_view } = service;
-  const title = "rakib";
+  const [service, setService] = useState([]);
   const navigate = useNavigate();
-  const imageHostKey = process.env.REACT_APP_imgbb_key2;
+  const id = useParams().id;
+
+  useEffect(()=>{
+    fetch(`http://localhost:5000/services/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setService(data);
+      });
+  },[id, loading])
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  if (loading) {
+  if (loading || (service.length===0)) {
     return (
       <div className="text-center mt-12">
         <Spinner aria-label="Extra large  Center-aligned spinner example" />
@@ -31,49 +38,28 @@ const BKash = () => {
   }
 
   const handleBkash = (data) => {
-    const { details, rating, image_url, price } = data;
-    if (rating > 5) {
-      toast.error("rating must be less then 6");
-      return;
-    }
-    if (details.length > 200) {
-      toast.error(
-        `Description length:${details.length}. It should be maximum 200 characters`
-      );
-      return;
-    }
-    const photo = data.image_url[0];
-    console.log(photo);
-    const service = { title, details, rating, image_url, price };
-    const formData = new FormData();
-    formData.append("image", photo);
+    console.log(data);
+    data["product_id"] = service._id;
+    data["price"] = service.price;
+    data["email"] = user?.email;
+    data["buyer"] = user?.displayName;
+    data["title"] = service.title;
 
-    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
-    fetch(url, {
+    fetch("http://localhost:5000/order", {
       method: "POST",
-      body: formData,
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.success) {
-          service.image_url = data.data.url;
-          fetch("http://localhost:5000/addService", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(service),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.acknowledged) {
-                toast.success("Service added successfully!");
-                navigate(`/services`);
-              }
-              toast.error("Failed to add service. Try again!");
-            });
+        if (data.acknowledged) {
+          toast.success("Order added successfully!");
+          navigate(`/services/${service._id}`);
         }
+        else toast.error("Failed to add service. Try again!");
       });
   };
   return (
@@ -90,10 +76,7 @@ const BKash = () => {
             Service Name
           </label>
           <input
-            {...register("title", {
-              required: "Service name is required",
-            })}
-            defaultValue={`${title}`}            
+            defaultValue={`${service?.title}`}
             className="w-full px-4 py-3    border-gray-700   bg-slate-500   text-gray-100 focus:border-violet-400 cursor-not-allowed"
             disabled
           />
@@ -103,10 +86,7 @@ const BKash = () => {
             Buyer
           </label>
           <input
-            {...register("buyer", {
-              required: "buyer name is required",
-            })}
-            defaultValue={`${user?.displayName}`}            
+            defaultValue={`${user?.displayName}`}
             className="w-full px-4 py-3    border-gray-700   bg-slate-500   text-gray-100 focus:border-violet-400 cursor-not-allowed"
             disabled
           />
@@ -116,10 +96,7 @@ const BKash = () => {
             Email address
           </label>
           <input
-            {...register("email", {
-              required: "Service name is required",
-            })}
-            defaultValue={`${user?.email}`}            
+            defaultValue={`${user?.email}`}
             className="w-full px-4 py-3    border-gray-700   bg-slate-500   text-gray-100 focus:border-violet-400 cursor-not-allowed"
             disabled
           />
@@ -132,7 +109,7 @@ const BKash = () => {
             type="number"
             {...register("transaction_id", {
               required: "Service name is required",
-            })}            
+            })}
             className="w-full px-4 py-3    border-gray-700   bg-slate-500   text-gray-100 focus:border-violet-400"
           />
           {errors.transaction_id && (
@@ -147,7 +124,7 @@ const BKash = () => {
             type="text"
             {...register("country", {
               required: "country is required",
-            })}            
+            })}
             className="w-full px-4 py-3    border-gray-700   bg-slate-500   text-gray-100 focus:border-violet-400"
           />
           {errors.country && (
@@ -162,7 +139,7 @@ const BKash = () => {
             type="text"
             {...register("district", {
               required: "district is required",
-            })}            
+            })}
             className="w-full px-4 py-3    border-gray-700   bg-slate-500   text-gray-100 focus:border-violet-400"
           />
           {errors.district && (
@@ -177,7 +154,7 @@ const BKash = () => {
             type="number"
             {...register("post_code", {
               required: "post_code is required",
-            })}            
+            })}
             className="w-full px-4 py-3    border-gray-700   bg-slate-500   text-gray-100 focus:border-violet-400"
           />
           {errors.post_code && (

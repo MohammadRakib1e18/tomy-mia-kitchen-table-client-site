@@ -1,16 +1,36 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { Link, useLoaderData } from "react-router-dom";
-import { Rating } from "flowbite-react";
+import { Rating, Spinner } from "flowbite-react";
 import AllReviews from "../ReviewContainer/AllReviews";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { useEffect } from "react";
 
 const ServiceDetails = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
+  const [bought, setBought] = useState(false);
 
   const service = useLoaderData();
   const { _id, title, price, details, image_url, rating, total_view } = service;
+
+  useEffect(()=>{
+    fetch(`http://localhost:5000/order/${_id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if(data) setBought(true);
+      });
+  },[_id])
+
+  if (loading) {
+    return (
+      <div className="text-center mt-12">
+        <Spinner aria-label="Extra large  Center-aligned spinner example" />
+      </div>
+    );
+  }
+
+
   const fullStar = Math.ceil(parseInt(rating));
   let starArray = [1, 2, 3, 4, 5];
   return (
@@ -50,31 +70,38 @@ const ServiceDetails = () => {
             </Rating>
             <p className="py-6 md:w-2/3 ">{details}</p>
             <h1 className="text-4xl font-semibold text-red-600">${price}</h1>
-            <div className="dropdown dropdown-bottom rounded-none ">
-              <label
-                tabIndex={0}
-                className="mt-8 btn btn-warning rounded-full text-xl px-12 cursor-pointer"
-              >
-                Order Now
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu p-2 mt-1 space-y-3 shadow text-slate-200 w-44 rounded-md bg-slate-800"
-              >
-                <Link
-                  to={`/bkash/${_id}`}
-                  className="bg-slate-700 px-3 py-1 rounded-2xl"
+            {bought && (
+              <button className="mt-8 bg-slate-600 py-3  rounded-full text-xl px-12 cursor-not-allowed">
+                Already Purchased
+              </button>
+            )}
+            {!bought && (
+              <div className="dropdown dropdown-bottom rounded-none ">
+                <label
+                  tabIndex={0}
+                  className="mt-8 btn btn-warning rounded-full text-xl px-12 cursor-pointer"
                 >
-                  <li>BKash</li>
-                </Link>
-                <Link
-                  to={`/stripe/${_id}`}
-                  className="bg-slate-700 px-3 py-1 rounded-2xl"
+                  Order Now
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu p-2 mt-1 space-y-3 shadow text-slate-200 w-44 rounded-md bg-slate-800"
                 >
-                  <li>Stripe</li>
-                </Link>
-              </ul>
-            </div>
+                  <Link
+                    to={`/bkash/${_id}`}
+                    className="bg-slate-700 px-3 py-1 rounded-2xl"
+                  >
+                    <li>BKash</li>
+                  </Link>
+                  <Link
+                    to={`/stripe/${_id}`}
+                    className="bg-slate-700 px-3 py-1 rounded-2xl"
+                  >
+                    <li>Stripe</li>
+                  </Link>
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>
