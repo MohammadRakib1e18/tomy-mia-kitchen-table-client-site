@@ -59,14 +59,20 @@ const ServiceDetails = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 mt-1 space-y-3 shadow text-slate-200 w-52 rounded-md bg-slate-800"
+                className="dropdown-content menu p-2 mt-1 space-y-3 shadow text-slate-200 w-44 rounded-md bg-slate-800"
               >
-                <li className="bg-slate-700">
-                  <Link to="/bkash">BKash</Link>
-                </li>
-                <li className="bg-slate-700">
-                  <Link to="/stripe">Stripe</Link>
-                </li>
+                <Link
+                  to={`/bkash/${_id}`}
+                  className="bg-slate-700 px-3 py-1 rounded-2xl"
+                >
+                  <li>BKash</li>
+                </Link>
+                <Link
+                  to={`/stripe/${_id}`}
+                  className="bg-slate-700 px-3 py-1 rounded-2xl"
+                >
+                  <li>Stripe</li>
+                </Link>
               </ul>
             </div>
           </div>

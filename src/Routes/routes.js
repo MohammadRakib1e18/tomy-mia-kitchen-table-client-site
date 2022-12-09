@@ -79,14 +79,15 @@ export const routes = createBrowserRouter([
         path: "/registration",
         element: <Registration></Registration>,
       },
+
       {
-        path:'/bkash',
-        element: <BKash></BKash>
+        path: "/bkash/:id",
+        element: <BKash></BKash>,
       },
       {
-        path: '/stripe',
-        element: <Stripe></Stripe>
-      }
+        path: "/stripe/:id",
+        element: <Stripe></Stripe>,
+      },
     ],
   },
   {
