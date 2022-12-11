@@ -17,7 +17,7 @@ const Stripe = () => {
   const id = useParams().id;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/services/${id}`)
+    fetch(`https://resturant-site-server.vercel.app/services/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setService(data);
@@ -61,11 +61,8 @@ const Stripe = () => {
       </div>
 
       <div className="w-1/2 rounded-md py-8 px-5 mx-auto mt-12 bg-slate-200">
-        <Elements
-          className=" mt-5 border bg-red-400"
-          stripe={stripePromise}
-        >
-          <StripeCheckout></StripeCheckout>
+        <Elements stripe={stripePromise}>
+          <StripeCheckout service={service}></StripeCheckout>
         </Elements>
       </div>
     </div>

@@ -14,13 +14,13 @@ const ServiceDetails = () => {
   const service = useLoaderData();
   const { _id, title, price, details, image_url, rating, total_view } = service;
 
-  useEffect(()=>{
-    fetch(`http://localhost:5000/order/${_id}`)
+  useEffect(() => {
+    fetch(`https://resturant-site-server.vercel.app/order/${_id}`)
       .then((res) => res.json())
       .then((data) => {
-        if(data) setBought(true);
+        if (data) setBought(true);
       });
-  },[_id])
+  }, [_id]);
 
   if (loading) {
     return (
@@ -29,7 +29,6 @@ const ServiceDetails = () => {
       </div>
     );
   }
-
 
   const fullStar = Math.ceil(parseInt(rating));
   let starArray = [1, 2, 3, 4, 5];

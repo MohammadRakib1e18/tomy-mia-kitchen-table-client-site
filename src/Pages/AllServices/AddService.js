@@ -42,7 +42,7 @@ const AddService = () => {
         console.log(data);
         if (data.success) {
           service.image_url = data.data.url;
-          fetch("http://localhost:5000/addService", {
+          fetch("https://resturant-site-server.vercel.app/addService", {
             method: "POST",
             headers: {
               "content-type": "application/json",

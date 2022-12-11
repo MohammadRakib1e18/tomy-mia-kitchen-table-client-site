@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import {  useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 import bkashLogo from "../../images/bkash_payment_logo.png";
@@ -15,13 +15,13 @@ const BKash = () => {
   const navigate = useNavigate();
   const id = useParams().id;
 
-  useEffect(()=>{
-    fetch(`http://localhost:5000/services/${id}`)
+  useEffect(() => {
+    fetch(`https://resturant-site-server.vercel.app/services/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setService(data);
       });
-  },[id, loading])
+  }, [id, loading]);
 
   const {
     register,
@@ -29,7 +29,7 @@ const BKash = () => {
     formState: { errors },
   } = useForm();
 
-  if (loading || (service.length===0)) {
+  if (loading || service.length === 0) {
     return (
       <div className="text-center mt-12">
         <Spinner aria-label="Extra large  Center-aligned spinner example" />
@@ -45,7 +45,7 @@ const BKash = () => {
     data["buyer"] = user?.displayName;
     data["title"] = service.title;
 
-    fetch("http://localhost:5000/order", {
+    fetch("https://resturant-site-server.vercel.app/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -58,8 +58,7 @@ const BKash = () => {
         if (data.acknowledged) {
           toast.success("Order added successfully!");
           navigate(`/services/${service._id}`);
-        }
-        else toast.error("Failed to add service. Try again!");
+        } else toast.error("Failed to add service. Try again!");
       });
   };
   return (

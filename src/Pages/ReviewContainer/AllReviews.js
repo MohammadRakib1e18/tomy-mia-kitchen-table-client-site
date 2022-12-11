@@ -13,7 +13,7 @@ const AllReviews = () => {
   const { loading, logOut } = useContext(AuthContext);
   useEffect(() => {
     if (!loading) {
-      fetch(`http://localhost:5000/allReviews`, {
+      fetch(`https://resturant-site-server.vercel.app/allReviews`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("resturant-token")}`,
         },
@@ -46,9 +46,12 @@ const AllReviews = () => {
       confirmButtonText: "Save",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/services/delete/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://resturant-site-server.vercel.app/services/delete/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
