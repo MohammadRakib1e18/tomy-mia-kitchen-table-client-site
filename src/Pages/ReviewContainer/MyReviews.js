@@ -1,3 +1,4 @@
+import { Spinner } from "flowbite-react";
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaBahai } from "react-icons/fa";
@@ -35,6 +36,14 @@ const MyReviews = () => {
         });
     }
   }, [user?.email, loading, logOut, navigate]);
+  
+  if (loading) {
+    return (
+      <div className="text-center mt-12">
+        <Spinner aria-label="Extra large  Center-aligned spinner example" />
+      </div>
+    );
+  }
 
   const deleteReview = (_id) => {
     Swal.fire({
