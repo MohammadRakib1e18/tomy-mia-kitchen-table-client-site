@@ -1,6 +1,8 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { useNavigate, useParams } from "react-router-dom";
 
 // import "../styles/common.css";
 
@@ -10,6 +12,8 @@ const StripeCheckout = ({ service }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { price } = service;
+  const navigate = useNavigate();
+  const id = useParams().id;
 
   // useEffect(() => {
   //   // Create PaymentIntent as soon as the page loads
@@ -25,31 +29,36 @@ const StripeCheckout = ({ service }) => {
   //     .then((data) => setClientSecret(data.clientSecret));
   // }, [price]);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
+      toast.error("Stripe and element can't be empty");
       return;
     }
+    toast.error(
+      "Thanks for your interest.\nNot available right now.Coming soon.\n\nChoose BKash Payment system "
+    );
+    navigate(`/services/${service._id}`);
 
-    const card = elements.getElement(CardElement);
+    // const card = elements.getElement(CardElement);
 
-    if (card == null) {
-      return;
-    }
+    // if (card == null) {
+    //   return;
+    // }
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card,
-    });
+    // const { error, paymentMethod } = await stripe.createPaymentMethod({
+    //   type: "card",
+    //   card,
+    // });
 
-    if (error) {
-      console.log("[error]", error);
-      setCardError(error);
-    } else {
-      setCardError("");
-      console.log("[PaymentMethod]", paymentMethod);
-    }
+    // if (error) {
+    //   console.log("[error]", error);
+    //   setCardError(error);
+    // } else {
+    //   setCardError("");
+    //   console.log("[PaymentMethod]", paymentMethod);
+    // }
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -72,7 +81,7 @@ const StripeCheckout = ({ service }) => {
       <button
         type="submit"
         className="py-1 mx-auto flex justify-center mt-12 -mb-4 bg-yellow-400 text-slate-200 rounded-full text-xl px-12 cursor-pointer"
-        disabled={!stripe || !clientSecret}
+        // disabled={!stripe || !clientSecret}
       >
         Payment Done!
       </button>

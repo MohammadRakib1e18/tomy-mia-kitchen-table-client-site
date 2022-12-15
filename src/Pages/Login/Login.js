@@ -60,16 +60,54 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
+        const user = result.user;
+
+        const currentUser = {
+          email: user.email,
+        };
+        // get jwt token
+        fetch("https://resturant-site-server.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("resturant-token", data.token);
+            navigate(from, { replace: true });
+          });
+
         toast.success("SignIn with Google Successful!");
         navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error(`${error.message}`);
+        navigate("/");
       });
   };
   const handleGithubSignIn = () => {
     githubSignIn()
       .then((result) => {
+        const user = result.user;
+        const currentUser = {
+          email: user.email,
+        };
+        // get jwt token
+        fetch("https://resturant-site-server.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("resturant-token", data.token);
+            navigate(from, { replace: true });
+          });
         toast.success("SignIn with Github Successful!");
         navigate(from, { replace: true });
       })

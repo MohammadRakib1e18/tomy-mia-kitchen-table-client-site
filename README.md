@@ -5,6 +5,7 @@
 Some Key Features:
 
 * This is a Single Page Application (SPA)
+* BKash and Stripe (upcoming) payment system. 
 * User can provide review.
 * Zoom the photo across the whole screen.
 * A valid user can edit and delete his/her review.

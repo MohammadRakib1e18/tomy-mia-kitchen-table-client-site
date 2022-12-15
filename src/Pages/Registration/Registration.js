@@ -62,26 +62,64 @@ const Registration = () => {
         toast.error(`${error.message}`);
       });
   };
-  const handleGoogleSignIn = () => {
-    googleSignIn()
-      .then((result) => {
-        toast.success("Registration with Google Completed Successfully!");
-        navigate("/");
+const handleGoogleSignIn = () => {
+  googleSignIn()
+    .then((result) => {
+      const user = result.user;
+
+      const currentUser = {
+        email: user.email,
+      };
+      // get jwt token
+      fetch("https://resturant-site-server.vercel.app/jwt", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(currentUser),
       })
-      .catch((error) => {
-        toast.error(`${error.message}`);
-      });
-  };
-  const handleGithubSignIn = () => {
-    githubSignIn()
-      .then((result) => {
-        toast.success("Registration with Github Completed Successfully!");
-        navigate("/");
+        .then((res) => res.json())
+        .then((data) => {
+          localStorage.setItem("resturant-token", data.token);
+          navigate('/');
+        });
+
+      toast.success("SignIn with Google Successful!");
+      navigate('/');
+    })
+    .catch((error) => {
+      toast.error(`${error.message}`);
+      navigate("/");
+    });
+};
+const handleGithubSignIn = () => {
+  githubSignIn()
+    .then((result) => {
+      const user = result.user;
+      const currentUser = {
+        email: user.email,
+      };
+      // get jwt token
+      fetch("https://resturant-site-server.vercel.app/jwt", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(currentUser),
       })
-      .catch((error) => {
-        toast.error(`${error.message}`);
-      });
-  };
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          localStorage.setItem("resturant-token", data.token);
+          navigate('/');
+        });
+      toast.success("SignIn with Github Successful!");
+      navigate('/');
+    })
+    .catch((error) => {
+      toast.error(`${error.message}`);
+    });
+};
 
   return (
     <div className="mt-8 w-5/6 mx-auto max-w-md p-8 space-y-3   bg-slate-700   text-gray-100">

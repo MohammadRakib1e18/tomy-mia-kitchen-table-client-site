@@ -11,7 +11,6 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-  console.log(user?.photoURL);
 
   const handleLogOut = () => {
     logOut()
@@ -161,7 +160,6 @@ const Navbar = () => {
             >
               <div className="avatar online">
                 <div className="w-10 h-10 border rounded-full">
-                  {console.log(user?.photoURL)}
                   <img src={user?.photoURL} alt='' />
                 </div>
               </div>
